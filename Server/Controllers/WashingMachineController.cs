@@ -9,11 +9,7 @@ using System.Runtime.Serialization;
 public class WashingMachineController : ControllerBase
 {
   // GET: api/Values
-  [HttpGet("values")]
-  public IActionResult GetValues()
-  {
-    return Ok(new string[] { "value1", "value2" });
-  }
+  
 
   [HttpPost("add")]
   public IActionResult AddValues(CreateValues request)
@@ -34,7 +30,7 @@ public class WashingMachineController : ControllerBase
   [HttpGet("{id}")]
   public IActionResult GetWashingMachine(string id)
   {
-    List<WashingMachine> washingMachines = WashingMachine.pullWashingMachineData();
+    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines();
     for (int i = 0; i < washingMachines.Count; i++)
     {
       if (washingMachines[i].Id.Equals(id))
@@ -49,7 +45,7 @@ public class WashingMachineController : ControllerBase
   [HttpGet("")]
   public IActionResult GetWashingMachines()
   {
-    List<WashingMachine> washingMachines = WashingMachine.pullWashingMachineData();
+    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines();
 
     List<WashingMachineResponse> list = new List<WashingMachineResponse>();
     foreach (WashingMachine washer in washingMachines)
@@ -66,9 +62,10 @@ public class WashingMachineController : ControllerBase
     List<string> lastModified = new List<string>();
 
     lastModified.Add(DateTime.Now.ToString());
-    WashingMachine washingMachine = new WashingMachine(washingMachineData.id, washingMachineData.Cost, washingMachineData.Model, washingMachineData.LoadAmount, washingMachineData.Year, washingMachineData.RunTime, lastModified);
+    
+    WashingMachine washingMachine = new WashingMachine(washingMachineData.id, washingMachineData.Cost, washingMachineData.Model, washingMachineData.LoadAmount, washingMachineData.Year, washingMachineData.RunTime, washingMachineData.DeviceType, lastModified, new List<string>());
 
-    WashingMachine.writeWashingMachineData(washingMachine);
+    WashingMachine.storeWashingMachineData(washingMachine);
 
     return Ok("Successfully created");
   }
@@ -77,7 +74,7 @@ public class WashingMachineController : ControllerBase
   [HttpPost("update/{id}")]
   public IActionResult UpdateWashingMachine(string id, UpdateWashingMachine washingMachineData)
   {
-    List<WashingMachine> washingMachines = WashingMachine.pullWashingMachineData();
+    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines();
 
     if (washingMachines == null || washingMachines.Count == 0)
     {

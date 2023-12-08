@@ -5,22 +5,10 @@ import { WashingMachineI } from "./App";
 import React from "react";
 import { Button, Stack } from "react-bootstrap";
 
-
-export async function fetchWashingMachines(): Promise<WashingMachineI[]> {
-  try {
-    const response = await fetch("/washingMachines.json"); // assuming it's in the public folder
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error("Error fetching washing machines:", error);
-    return null;
-  }
-}
+type Warm = "warm";
+type Cold = "cold";
+type Hot = "hot";
+export type temps = Warm | Cold | Hot;
 
 export default function WashingMachine({
   _id,
@@ -32,26 +20,25 @@ export default function WashingMachine({
   _expandedView,
   _minimize,
 }) {
-  const runCost = _cost;
-  const machineCost = runCost * 5;
+  const cost = _cost;
   const year = _year;
   const model = _model;
   const id = _id;
   const port = 5035;
+  
 
   const [washTime, setWashTime] = useState(_washCycleTime);
   const [doorIsClosed, setDoorIsClosed] = useState(false);
   const [inUse, setInUse] = useState(false);
-  const [temperature, setTemperature] = useState("Warm");
-  const [amountRemaining, setAmountRemaining] = useState(machineCost);
+  const [temperature, setTemperature] = useState<temps>("warm");
+  const [amountRemaining, setAmountRemaining] = useState(cost);
   const [amountPaid, setAmountPaid] = useState(0.0);
   const [startTimer, setStartTimer] = useState(false);
   const [paymentProcessed, setPaymentProcessed] = useState(false);
   const [expandedView, setExpandedView] = useState(_expandedView || false);
   const loadAmount = _loadAmount;
 
-  // const [numb1, setNumb1] = useState(0);
-  // const [numb2, setNumb2] = useState(0);
+  
 
   function changeView() {
     setExpandedView((view) => {
@@ -67,7 +54,7 @@ export default function WashingMachine({
     }
   }, [startTimer, _washCycleTime]);
 
-  function updateWashTemperature(temp) {
+  function updateWashTemperature(temp: temps) {
     setTemperature(temp);
   }
 
@@ -84,46 +71,6 @@ export default function WashingMachine({
     // setAmountPaid(0.0);
     setInUse(false);
   };
-
-  // const mathApiAdd = () => {
-  //   const request = new Request(`http://localhost:${port}/add`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       numb1: numb1,
-  //       numb2: numb2,
-  //     }),
-  //   });
-
-  //   fetch(request)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
-
-  // const mathApiMultiply = () => {
-  //   const request = new Request(`http://localhost:${port}/multiply`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       numb1: numb1,
-  //       numb2: numb2,
-  //     }),
-  //   });
-
-  //   fetch(request)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
 
   const calculateWashTime = () => {
     //TODO -
@@ -145,12 +92,11 @@ export default function WashingMachine({
             loadAmount={loadAmount}
             temperature={temperature}
             updateWashTemperature={updateWashTemperature}
-            machineCost={machineCost}
+            machineCost={cost}
             amountRemaining={amountRemaining}
             doorIsClosed={doorIsClosed}
             paymentProcessed={paymentProcessed}
             setPaymentProcessed={setPaymentProcessed}
-  
             startTimer={startTimer}
             setStartTimer={setStartTimer}
             calculateWashTime={calculateWashTime}
@@ -164,7 +110,7 @@ export default function WashingMachine({
           <WashingMachineUI
             id={id}
             loadAmount={loadAmount}
-            machineCost={machineCost}
+            machineCost={cost}
             model={model}
             inUse={inUse}
             onClick={setExpandedView}

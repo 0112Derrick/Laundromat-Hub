@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.css";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
-import WashingMachine, { fetchWashingMachines } from "./WashingMachine";
+import WashingMachine from "./WashingMachine";
 
 export interface WashingMachineI {
   id: string;
@@ -40,10 +40,10 @@ function App() {
         })
         .catch((error) => console.error(error));
     };
-    
+
     fetchData();
   }, [setWashingMachines]);
- 
+
   const [selectedMachineId, setSelectedMachineId] = useState<string | null>(
     null
   );

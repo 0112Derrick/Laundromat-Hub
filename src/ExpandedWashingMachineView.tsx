@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Stack, Button, Dropdown } from "react-bootstrap";
 import { StartMachine } from "./StartMachine";
 import { ProcessPaymentForm } from "./PaymentProcessor";
+import { temps } from "./WashingMachine";
 
 export default function ExpandedWashingMachineView({
   changeView,
@@ -30,6 +31,10 @@ export default function ExpandedWashingMachineView({
     });
   };
 
+  function updateWashTemperatureWrapper(temp: temps) {
+    updateWashTemperature(temp);
+  }
+
   return (
     <>
       <div style={{ width: "80vw", height: "100vh", paddingTop: "10%" }}>
@@ -37,6 +42,13 @@ export default function ExpandedWashingMachineView({
           {displayPaymentScreen ? (
             <ProcessPaymentForm
               setPaymentProcessed={setPaymentProcessed}
+              setDisplayPaymentScreen={setDisplayPaymentScreen}
+              settings={{
+                machineType: "Washer",
+                machineID: id,
+                temperatureSetting: temperature,
+                washMode: "normal",
+              }}
             ></ProcessPaymentForm>
           ) : (
             <>
@@ -67,7 +79,7 @@ export default function ExpandedWashingMachineView({
                   <Dropdown.Item
                     href="#/action-1"
                     onClick={() => {
-                      updateWashTemperature("Warm");
+                      updateWashTemperatureWrapper("warm");
                     }}
                   >
                     Warm
@@ -75,7 +87,7 @@ export default function ExpandedWashingMachineView({
                   <Dropdown.Item
                     href="#/action-2"
                     onClick={() => {
-                      updateWashTemperature("Hot");
+                      updateWashTemperatureWrapper("hot");
                     }}
                   >
                     Hot
@@ -83,7 +95,7 @@ export default function ExpandedWashingMachineView({
                   <Dropdown.Item
                     href="#/action-3"
                     onClick={() => {
-                      updateWashTemperature("Cold");
+                      updateWashTemperatureWrapper("cold");
                     }}
                   >
                     Cold
@@ -114,55 +126,6 @@ export default function ExpandedWashingMachineView({
                   <div>Close the door</div>
                 )}
               </Button>
-
-              {/* <label htmlFor="moneyAmountInput">
-            <b>Insert Money:</b>
-          </label> */}
-
-              {/* <div>
-            <span>$</span>
-            <input
-              type="number"
-              id="moneyAmountInput"
-              value={amountPaid}
-              onChange={(event) => {
-                let payment = Number.parseInt(event.target.value);
-
-                if (payment < 0) {
-                  payment = 0;
-                }
-
-                if (payment > amountRemaining) {
-                  payment = amountRemaining;
-                }
-                setAmountPaid(payment);
-              }}
-            />
-            <Button
-              onClick={() => {
-                setAmountPaid((amount) => {
-                  if (amount + 1 > amountRemaining) {
-                    return amountRemaining;
-                  }
-                  return amount + 1;
-                });
-              }}
-            >
-              +
-            </Button>
-            <Button
-              onClick={() => {
-                setAmountPaid((amount) => {
-                  if (amount - 1 <= 0.0) {
-                    return 0.0;
-                  }
-                  return amount - 1;
-                });
-              }}
-            >
-              -
-            </Button>
-          </div> */}
 
               {paymentProcessed ? (
                 <StartMachine

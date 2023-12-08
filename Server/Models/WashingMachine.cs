@@ -5,18 +5,17 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-public class WashingMachine
+public class WashingMachine : Machine
 {
-  public string Id { get; }
   public double Cost { get; set; }
   public string Model { get; }
   public double LoadAmount { get; set; }
   public int Year { get; }
   public int RunTime { get; set; }
   public List<string> LastModified { get; set; }
-  
 
-  public WashingMachine(string id, double cost, string model, double loadAmount, int year, int runTime, List<string> lastModified)
+
+  public WashingMachine(string id, double cost, string model, double loadAmount, int year, int runTime, string deviceType, List<string> lastModified, List<string> modifications)
   {
     Id = id;
     Cost = cost;
@@ -25,10 +24,12 @@ public class WashingMachine
     Year = year;
     RunTime = runTime;
     LastModified = lastModified;
+    DeviceType = deviceType;
+    Modifications = modifications;
   }
 
 
-  public static List<WashingMachine> pullWashingMachineData(Boolean printMachines = false)
+  public static List<WashingMachine> getWashingMachines(Boolean printMachines = false)
   {
     string filePath = "./washingMachines.json";
 
@@ -72,12 +73,12 @@ public class WashingMachine
     }
   }
 
-  public static void writeWashingMachineData(WashingMachine data)
+  public static void storeWashingMachineData(WashingMachine data)
   {
 
     string filePath = "./washingMachines.json";
 
-    List<WashingMachine> existingData = WashingMachine.pullWashingMachineData();
+    List<WashingMachine> existingData = WashingMachine.getWashingMachines();
 
     if (existingData == null)
     {
@@ -106,7 +107,7 @@ public class WashingMachine
 
     string filePath = "./washingMachines.json";
 
-    List<WashingMachine> existingData = WashingMachine.pullWashingMachineData();
+    List<WashingMachine> existingData = WashingMachine.getWashingMachines();
 
     WashingMachine? washer = existingData.Find(washer => washer.Id == data.Id);
 
@@ -132,7 +133,7 @@ public class WashingMachine
 
     string filePath = "./washingMachines.json";
 
-    List<WashingMachine> existingData = WashingMachine.pullWashingMachineData();
+    List<WashingMachine> existingData = WashingMachine.getWashingMachines();
 
     WashingMachine? washerToBeRemoved = existingData.Find(washer => washer.Id == id);
 
@@ -157,6 +158,8 @@ public class WashingMachine
 
   public void updateValues(double cost, double loadAmount, int runTime, string date)
   {
+    string mod = $"Cost change: {this.Cost} to {cost}; LoadAmount change: {this.LoadAmount} to {loadAmount}; Runtime change: {this.RunTime} to {runTime}";
+    Modifications.Add(mod);
     Cost = cost;
     LoadAmount = loadAmount;
     RunTime = runTime;

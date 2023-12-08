@@ -4,5 +4,6 @@ double Cost,
 string Model,
 double LoadAmount,
 int Year,
-int RunTime
+int RunTime,
+string DeviceType
 );

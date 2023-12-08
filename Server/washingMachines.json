@@ -1,101 +1,123 @@
 [
   {
     "Id": "100",
-    "Cost": 0.75,
+    "Cost": 5,
     "Model": "SmartCleanX200",
     "LoadAmount": 5,
     "Year": 2021,
     "RunTime": 30,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "101",
-    "Cost": 1,
+    "Cost": 3.5,
     "Model": "EcoWashPro3000",
     "LoadAmount": 2.5,
     "Year": 2022,
     "RunTime": 45,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "102",
-    "Cost": 0.9,
+    "Cost": 3.5,
     "Model": "UltraWashElite",
     "LoadAmount": 2.5,
     "Year": 2020,
     "RunTime": 35,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "103",
-    "Cost": 0.8,
+    "Cost": 5,
     "Model": "QuickSpin400",
-    "LoadAmount": 4.5,
+    "LoadAmount": 5,
     "Year": 2023,
     "RunTime": 25,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "104",
-    "Cost": 1.2,
+    "Cost": 3.5,
     "Model": "PowerWashMax",
     "LoadAmount": 2.5,
     "Year": 2022,
     "RunTime": 50,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "105",
-    "Cost": 1.1,
+    "Cost": 4,
     "Model": "EfficientClean700",
     "LoadAmount": 3.5,
     "Year": 2021,
     "RunTime": 40,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "106",
-    "Cost": 0.85,
+    "Cost": 5,
     "Model": "SilentWashUltra",
     "LoadAmount": 5,
     "Year": 2019,
     "RunTime": 30,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "107",
-    "Cost": 1.15,
+    "Cost": 4,
     "Model": "TechSavvyWasher",
     "LoadAmount": 3.5,
     "Year": 2023,
     "RunTime": 45,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "108",
-    "Cost": 0.95,
+    "Cost": 5,
     "Model": "QuickClean450",
-    "LoadAmount": 4.5,
+    "LoadAmount": 5,
     "Year": 2020,
     "RunTime": 25,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "109",
-    "Cost": 1.25,
+    "Cost": 5,
     "Model": "SuperiorSudsMaster",
     "LoadAmount": 5,
     "Year": 2022,
     "RunTime": 30,
-    "LastModified": [""]
+    "DeviceType": "Washer",
+    "LastModified": [""],
+    "Modifications": [""]
   },
   {
     "Id": "110",
-    "Cost": 0.75,
+    "Cost": 5,
     "Model": "SmartCleanX200",
     "LoadAmount": 5,
     "Year": 2023,
     "RunTime": 30,
-    "LastModified": ["12/03/2023 12:01:32"]
+    "DeviceType": "Washer",
+    "LastModified": ["12/03/2023 12:01:32"],
+    "Modifications": [""]
   }
 ]
