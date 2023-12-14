@@ -1,9 +1,12 @@
 public record WashingMachineResponse(
-string Id,
-double Cost,
-string Model,
-double LoadAmount,
-int Year,
-int RunTime,
-List<string> LastModified
+string id,
+double cost,
+string model,
+double loadAmount,
+int year,
+int runTime,
+string deviceType,
+List<string> temperatures,
+List<string> cycleModes,
+List<string> lastModified
 );

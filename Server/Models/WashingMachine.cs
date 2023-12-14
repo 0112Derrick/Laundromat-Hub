@@ -15,7 +15,7 @@ public class WashingMachine : Machine
   public List<string> LastModified { get; set; }
 
 
-  public WashingMachine(string id, double cost, string model, double loadAmount, int year, int runTime, string deviceType, List<string> lastModified, List<string> modifications)
+  public WashingMachine(string id, double cost, string model, double loadAmount, int year, int runTime, string deviceType, List<string> temperatures, List<string> cycleModes, List<string> lastModified, List<string> modifications)
   {
     Id = id;
     Cost = cost;
@@ -25,6 +25,8 @@ public class WashingMachine : Machine
     RunTime = runTime;
     LastModified = lastModified;
     DeviceType = deviceType;
+    CycleModes = cycleModes;
+    Temperatures = temperatures;
     Modifications = modifications;
   }
 
@@ -169,7 +171,7 @@ public class WashingMachine : Machine
   public override string ToString()
   {
     string lastModified = this.LastModified[LastModified.Count - 1];
-    return $"ID: {this.Id}, Model: {this.Model}, Cost: {this.Cost}, Load amount: {this.LoadAmount}, Year: {this.Year}, Last Modified: {lastModified}";
+    return $"ID: {this.Id}, Model: {this.Model}, Cost: {this.Cost}, Load amount: {this.LoadAmount}, Year: {this.Year}, Modes: {this.CycleModes}, Temperatures: {this.Temperatures} \n Last Modified: {lastModified}";
   }
 }
 

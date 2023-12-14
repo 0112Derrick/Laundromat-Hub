@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import {  Stack } from "react-bootstrap";
 import { CountdownTimer } from "./CountdownTimer";
-import exp from "constants";
+
 
 export type RinsePhase = {
   state: "Rinsing";
@@ -25,6 +25,13 @@ export type WashingMachinePhase =
   | RestPhase
   | WashPhase;
 
+export enum chosenImage {
+  image1,
+  image2,
+}
+
+export type displayMachineImages = [image1: string, image2: string];
+
 export function StartMachine({
   startTimer,
   setStartTimer,
@@ -34,12 +41,34 @@ export function StartMachine({
   doorIsClosed,
   washTime,
   setInUse,
+  displayMachineImages = null,
 }) {
   const [time, setTime] = useState(washTime);
   const [readyToStartTimer, setReadyToStartTimer] = useState(startTimer);
   const [washPhase, setWashPhase] = useState<WashingMachinePhase>({
     state: "Resting",
   });
+
+  const [displayedImage, setDisplayedImage] = useState(
+    displayMachineImages
+      ? `${(displayMachineImages as displayMachineImages)[0]}`
+      : null
+  );
+
+  function setDisplayedImageWrapper(image: 0 | 1) {
+    switch (image) {
+      case 0:
+        setDisplayedImage(
+          `${(displayMachineImages as displayMachineImages)[0]}`
+        );
+        break;
+      case 1:
+        setDisplayedImage(
+          `${(displayMachineImages as displayMachineImages)[1]}`
+        );
+        break;
+    }
+  }
 
   function updateTime() {
     setTime(Math.floor(calculateWashTime() * washTime));
@@ -54,26 +83,32 @@ export function StartMachine({
 
   return (
     <>
-      {amountRemaining === 0 && doorIsClosed ? (
-        <>
-          {readyToStartTimer ? null : (
-            <Button onClick={updateTime}>Start</Button>
-          )}
+      <Stack
+        gap={1}
+        className="d-flex align-items-center justify-content-center"
+      >
+        {/* {readyToStartTimer ? null : <Button onClick={updateTime}>Start</Button>} */}
 
-          {washPhase.state ? <div>State: {washPhase.state}</div> : null}
+        {washPhase.state ? <h1>State: {washPhase.state}</h1> : null}
 
-          <CountdownTimer
-            initialCount={time}
-            isActiveValue={readyToStartTimer}
-            completedMSG={"Cycle completed!"}
-            countdownMSG={"Minutes remaining"}
-            onTimerFinish={onTimerFinish}
-            updateMachinePhase={setWashPhase}
-          ></CountdownTimer>
-        </>
-      ) : (
-        <div>Close the door.</div>
-      )}
+        <CountdownTimer
+          initialCount={time}
+          isActiveValue={readyToStartTimer}
+          completedMSG={"Cycle completed!"}
+          countdownMSG={"Minutes remaining"}
+          onTimerFinish={onTimerFinish}
+          setDisplayedImage={setDisplayedImageWrapper}
+          updateMachinePhase={setWashPhase}
+        ></CountdownTimer>
+
+        {displayMachineImages ? (
+          <img
+            src={displayedImage}
+            alt="A washing machine."
+            style={{ height: "300px", width: "300px" }}
+          />
+        ) : null}
+      </Stack>
     </>
   );
 }

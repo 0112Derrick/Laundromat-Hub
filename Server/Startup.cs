@@ -25,7 +25,8 @@ public class Startup
       options.AddPolicy("AllowReactApp",
             builder =>
             {
-              builder.WithOrigins("http://localhost:3000")
+              //builder.WithOrigins("http://localhost:3000")
+              builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             });

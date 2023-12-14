@@ -7,6 +7,8 @@
     "Year": 2021,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -18,6 +20,8 @@
     "Year": 2022,
     "RunTime": 45,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -29,6 +33,8 @@
     "Year": 2020,
     "RunTime": 35,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -40,6 +46,8 @@
     "Year": 2023,
     "RunTime": 25,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -51,6 +59,8 @@
     "Year": 2022,
     "RunTime": 50,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -62,6 +72,8 @@
     "Year": 2021,
     "RunTime": 40,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -73,6 +85,8 @@
     "Year": 2019,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -84,6 +98,8 @@
     "Year": 2023,
     "RunTime": 45,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -95,6 +111,8 @@
     "Year": 2020,
     "RunTime": 25,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -106,6 +124,8 @@
     "Year": 2022,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
     "Modifications": [""]
   },
@@ -117,6 +137,8 @@
     "Year": 2023,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "Temperatures": ["warm", "cold", "hot"],
+    "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": ["12/03/2023 12:01:32"],
     "Modifications": [""]
   }

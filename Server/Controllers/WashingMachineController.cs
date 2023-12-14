@@ -5,11 +5,11 @@ using System.Runtime.Serialization;
 
 //[Route("api/[controller]")]
 [ApiController]
-[Route("washingmachine")]
+[Route("washingMachine")]
 public class WashingMachineController : ControllerBase
 {
   // GET: api/Values
-  
+
 
   [HttpPost("add")]
   public IActionResult AddValues(CreateValues request)
@@ -35,10 +35,11 @@ public class WashingMachineController : ControllerBase
     {
       if (washingMachines[i].Id.Equals(id))
       {
-        WashingMachineResponse washer = new WashingMachineResponse(washingMachines[i].Id, washingMachines[i].Cost, washingMachines[i].Model, washingMachines[i].LoadAmount, washingMachines[i].Year, washingMachines[i].RunTime, washingMachines[i].LastModified);
+        WashingMachineResponse washer = new WashingMachineResponse(washingMachines[i].Id, washingMachines[i].Cost, washingMachines[i].Model, washingMachines[i].LoadAmount, washingMachines[i].Year, washingMachines[i].RunTime, washingMachines[i].DeviceType, washingMachines[i].Temperatures, washingMachines[i].CycleModes, washingMachines[i].LastModified);
         return Ok(washer);
       }
     }
+    Console.WriteLine("Listed washer " + id);
     return Ok(null);
   }
 
@@ -50,9 +51,9 @@ public class WashingMachineController : ControllerBase
     List<WashingMachineResponse> list = new List<WashingMachineResponse>();
     foreach (WashingMachine washer in washingMachines)
     {
-      list.Add(new WashingMachineResponse(washer.Id, washer.Cost, washer.Model, washer.LoadAmount, washer.Year, washer.RunTime, washer.LastModified));
+      list.Add(new WashingMachineResponse(washer.Id, washer.Cost, washer.Model, washer.LoadAmount, washer.Year, washer.RunTime, washer.DeviceType, washer.Temperatures, washer.CycleModes, washer.LastModified));
     }
-
+    Console.WriteLine("Listed all washers");
     return Ok(list);
   }
 
@@ -62,18 +63,18 @@ public class WashingMachineController : ControllerBase
     List<string> lastModified = new List<string>();
 
     lastModified.Add(DateTime.Now.ToString());
-    
-    WashingMachine washingMachine = new WashingMachine(washingMachineData.id, washingMachineData.Cost, washingMachineData.Model, washingMachineData.LoadAmount, washingMachineData.Year, washingMachineData.RunTime, washingMachineData.DeviceType, lastModified, new List<string>());
+
+    WashingMachine washingMachine = new WashingMachine(washingMachineData.Id, washingMachineData.Cost, washingMachineData.Model, washingMachineData.LoadAmount, washingMachineData.Year, washingMachineData.RunTime, washingMachineData.DeviceType, washingMachineData.Temperatures, washingMachineData.CycleModes, lastModified, new List<string>());
 
     WashingMachine.storeWashingMachineData(washingMachine);
 
     return Ok("Successfully created");
   }
 
-
   [HttpPost("update/{id}")]
   public IActionResult UpdateWashingMachine(string id, UpdateWashingMachine washingMachineData)
   {
+
     List<WashingMachine> washingMachines = WashingMachine.getWashingMachines();
 
     if (washingMachines == null || washingMachines.Count == 0)
@@ -85,8 +86,11 @@ public class WashingMachineController : ControllerBase
 
     if (washer == null || washer.Id == null)
     {
+
       Console.WriteLine("Washer not found");
+
       return BadRequest("No washer found with that id.");
+
     }
 
     washer.updateValues(washingMachineData.Cost, washingMachineData.LoadAmount, washingMachineData.RunTime, DateTime.Now.ToString());
@@ -94,8 +98,6 @@ public class WashingMachineController : ControllerBase
     WashingMachineUpdateResponse response = new WashingMachineUpdateResponse("Updated successfully", washer);
     return Ok(response);
   }
-
-
 
   [HttpPost("delete/{id}")]
   public IActionResult DeleteWashingMachine(string id)

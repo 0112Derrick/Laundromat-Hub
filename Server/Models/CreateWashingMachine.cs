@@ -1,9 +1,11 @@
 public record CreateWashingMachine(
-string id,
+string Id,
 double Cost,
 string Model,
 double LoadAmount,
 int Year,
 int RunTime,
-string DeviceType
+string DeviceType,
+List<string> Temperatures,
+List<string> CycleModes
 );

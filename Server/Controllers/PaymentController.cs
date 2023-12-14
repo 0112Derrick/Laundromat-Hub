@@ -16,9 +16,12 @@ public class PaymentController : ControllerBase
 
 
   [HttpPost("")]
-  public IActionResult MakePayment()
+  public IActionResult MakePayment(ReceivePayment payment)
   {
-    Console.WriteLine("Received data");
-    return Ok("Received payment");
+    Console.WriteLine("Received payment.");
+    Console.WriteLine(payment);
+    
+    PaymentResponse response = new PaymentResponse("Payment received.");
+    return Ok(response);
   }
 }
