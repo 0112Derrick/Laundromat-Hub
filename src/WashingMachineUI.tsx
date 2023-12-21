@@ -22,7 +22,7 @@ export default function WashingMachineUI({
           variant="top"
           src="https://st.depositphotos.com/1062321/4621/v/950/depositphotos_46217327-stock-illustration-washing-machine-icon.jpg"
         />
-        <Card.Body>
+        <Card.Body className="washerCardBody">
           <Card.Title>ID: {id}</Card.Title>
 
           <Stack gap={3}>

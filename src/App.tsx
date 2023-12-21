@@ -46,7 +46,11 @@ interface IndividualWashingMachineProps {
 
 const fetchWasher = async (id) => {
   const port = 5035;
-  const request = new Request(`http://localhost:${port}/washingmachine/${id}`, {
+  const localhost = "http://localhost:";
+  const serverIP = "http://192.168.0.229:";
+  const route = "/washingmachine/";
+  //const request = new Request(`http://localhost:${port}/washingmachine/${id}`
+  const request = new Request(`${serverIP + port + route + id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -109,7 +113,11 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const request = new Request(`http://localhost:${port}/washingmachine/`, {
+      const localhost = "http://localhost:";
+      const serverIP = "http://192.168.0.229:";
+      const route = "/washingmachine/";
+      //const request = new Request(`http://localhost:${port}/washingmachine/`
+      const request = new Request(`${serverIP + port + route}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -175,8 +183,7 @@ const App: React.FC = () => {
           element={
             <>
               <NavBar></NavBar>
-
-              <Container className="bg-dark-subtle">
+              <Container className="bg-dark-subtle homeScreen">
                 <Row className="justify-content-md-center">
                   <Col className="d-flex align-items-center justify-content-center">
                     <ListGroup

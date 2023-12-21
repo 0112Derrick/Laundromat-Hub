@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Form, FormText, Alert } from "react-bootstrap";
+import { Form, FormText, Alert, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { DryerMachineI, WashingMachineI } from "./App";
 import { temps, CycleMode, PaymentTracker } from "./WashingMachine";
+const localhost = "http://localhost:";
+const serverIP = "http://192.168.0.229:";
+const route = "/washingmachine/";
 
 type PaymentInfo = {
   cardHolder: string;
@@ -183,7 +186,7 @@ function DisplayPaymentAgreementScreen({
 
           setTimeout(() => {
             clearInterval(countdownIntervalId);
-            window.location.href = "http://localhost:3000";
+            window.location.href = `${serverIP}3000`;
           }, count * 1000 + 100);
         }}
       >
@@ -220,7 +223,7 @@ export function ProcessPaymentForm({
     if (settings.machineType === "Washer") {
       const fetchData = async () => {
         const request = new Request(
-          `http://localhost:${port}/washingmachine/${settings.machineID}`,
+          `${serverIP + port + route}${settings.machineID}`,
           {
             method: "GET",
             headers: {
@@ -352,7 +355,7 @@ export function ProcessPaymentForm({
 
     console.log(formData);
 
-    const request = new Request(`http://localhost:${port}/payment/`, {
+    const request = new Request(`${serverIP + port}/payment/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -378,7 +381,7 @@ export function ProcessPaymentForm({
 
         setTimeout(() => {
           clearInterval(countdownIntervalId);
-          window.location.href = `http://localhost:3000/washingmachine/${settings.machineID}`;
+          window.location.href = `${serverIP + route}${settings.machineID}`;
         }, count * 1000 + 100);
       })
 
@@ -558,9 +561,16 @@ export function ProcessPaymentForm({
             />
             <FormText id="expirationYear"></FormText>
           </Form.Group>
-
-          <Button type="reset">Reset form</Button>
-          <Button type="submit">Submit</Button>
+          <Row>
+            <Col className="d-flex align-items-center justify-content-center">
+              <Button type="submit">Submit</Button>
+            </Col>
+            <Col className="d-flex align-items-center justify-content-center">
+              <Button variant="danger" type="reset">
+                Reset form
+              </Button>
+            </Col>
+          </Row>
         </Form>
       )}
     </>

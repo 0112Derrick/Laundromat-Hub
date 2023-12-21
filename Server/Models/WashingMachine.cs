@@ -4,18 +4,28 @@ using System.Globalization;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Linq;
+
 
 public class WashingMachine : Machine
 {
+  [JsonPropertyName("Cost")]
   public double Cost { get; set; }
-  public string Model { get; }
+
+  [JsonPropertyName("Model")]
+  public string Model { get; set; }
+
+  [JsonPropertyName("LoadAmount")]
   public double LoadAmount { get; set; }
-  public int Year { get; }
+
+  [JsonPropertyName("Year")]
+  public int Year { get; set; }
+
+  [JsonPropertyName("RunTime")]
   public int RunTime { get; set; }
-  public List<string> LastModified { get; set; }
 
 
-  public WashingMachine(string id, double cost, string model, double loadAmount, int year, int runTime, string deviceType, List<string> temperatures, List<string> cycleModes, List<string> lastModified, List<string> modifications)
+  public WashingMachine(string id, double cost, string model, double loadAmount, int year, int runTime, string deviceType, bool inUse, UserReservation reservedByUser, List<string> temperatures, List<string> cycleModes, List<string> lastModified, List<string> modifications)
   {
     Id = id;
     Cost = cost;
@@ -28,59 +38,71 @@ public class WashingMachine : Machine
     CycleModes = cycleModes;
     Temperatures = temperatures;
     Modifications = modifications;
+    InUse = inUse;
+    ReservedByUser = reservedByUser;
   }
 
 
-  public static List<WashingMachine> getWashingMachines(Boolean printMachines = false)
+  public static async Task<List<WashingMachine>> getWashingMachines(Boolean printMachines = false)
   {
-    string filePath = "./washingMachines.json";
-
-    // Check if the file exists
-    if (File.Exists(filePath))
+    try
     {
-      // Read the entire file content as a string
-      string jsonContent = File.ReadAllText(filePath);
+      string filePath = "./washingMachines.json";
 
-      if (jsonContent == null)
+      // Check if the file exists
+      if (File.Exists(filePath))
       {
-        Console.WriteLine("Error reading file content. The content is null.");
+        // Read the entire file content as a string
+        string jsonContent = await File.ReadAllTextAsync(filePath);
+
+        if (jsonContent == null)
+        {
+          Console.WriteLine("Error reading file content. The content is null.");
+          return new List<WashingMachine>();
+        }
+        // Deserialize the JSON string to a C# object
+        // You need to define a corresponding class structure for your JSON data
+        List<WashingMachine>? jsonData = JsonSerializer.Deserialize<List<WashingMachine>>(jsonContent);
+
+        if (jsonData == null)
+        {
+          Console.WriteLine("Error deserializing JSON content. The deserialized data is null.");
+          return new List<WashingMachine>();  // Return an empty list instead of null
+        }
+
+        // Now you can access properties of your object
+        if (printMachines)
+        {
+          foreach (WashingMachine machine in jsonData)
+          {
+            Console.WriteLine(machine.ToString());
+          }
+        }
+
+        Console.WriteLine("Data retrieved successfully.");
+        return jsonData;
+      }
+      else
+      {
+        Console.WriteLine("File not found.");
         return new List<WashingMachine>();
       }
-      // Deserialize the JSON string to a C# object
-      // You need to define a corresponding class structure for your JSON data
-      List<WashingMachine>? jsonData = JsonSerializer.Deserialize<List<WashingMachine>>(jsonContent);
 
-      if (jsonData == null)
-      {
-        Console.WriteLine("Error deserializing JSON content. The deserialized data is null.");
-        return new List<WashingMachine>();  // Return an empty list instead of null
-      }
-
-      // Now you can access properties of your object
-      if (printMachines)
-      {
-        foreach (WashingMachine machine in jsonData)
-        {
-          Console.WriteLine(machine.ToString());
-        }
-      }
-
-      Console.WriteLine("Data retrieved successfully.");
-      return jsonData;
     }
-    else
+    catch (Exception ex)
     {
-      Console.WriteLine("File not found.");
+      Console.WriteLine($"An error occurred: {ex.Message}");
       return new List<WashingMachine>();
     }
+
   }
 
-  public static void storeWashingMachineData(WashingMachine data)
+  public static async Task storeWashingMachineData(WashingMachine data)
   {
 
     string filePath = "./washingMachines.json";
 
-    List<WashingMachine> existingData = WashingMachine.getWashingMachines();
+    List<WashingMachine> existingData = await WashingMachine.getWashingMachines();
 
     if (existingData == null)
     {
@@ -104,12 +126,12 @@ public class WashingMachine : Machine
     Console.WriteLine("Data written to file successfully.");
   }
 
-  public static void updateWashingMachineData(WashingMachine data)
+  public static async Task updateWashingMachineData(WashingMachine data)
   {
 
     string filePath = "./washingMachines.json";
 
-    List<WashingMachine> existingData = WashingMachine.getWashingMachines();
+    List<WashingMachine> existingData = await WashingMachine.getWashingMachines();
 
     WashingMachine? washer = existingData.Find(washer => washer.Id == data.Id);
 
@@ -130,12 +152,12 @@ public class WashingMachine : Machine
     Console.WriteLine("Data written to file successfully.");
   }
 
-  public static bool deleteWashingMachineData(string id)
+  public static async Task<bool> deleteWashingMachineData(string id)
   {
 
     string filePath = "./washingMachines.json";
 
-    List<WashingMachine> existingData = WashingMachine.getWashingMachines();
+    List<WashingMachine> existingData = await WashingMachine.getWashingMachines();
 
     WashingMachine? washerToBeRemoved = existingData.Find(washer => washer.Id == id);
 

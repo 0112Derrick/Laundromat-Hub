@@ -30,12 +30,12 @@ public class WashingMachineController : ControllerBase
   [HttpGet("{id}")]
   public IActionResult GetWashingMachine(string id)
   {
-    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines();
+    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines().Result;
     for (int i = 0; i < washingMachines.Count; i++)
     {
       if (washingMachines[i].Id.Equals(id))
       {
-        WashingMachineResponse washer = new WashingMachineResponse(washingMachines[i].Id, washingMachines[i].Cost, washingMachines[i].Model, washingMachines[i].LoadAmount, washingMachines[i].Year, washingMachines[i].RunTime, washingMachines[i].DeviceType, washingMachines[i].Temperatures, washingMachines[i].CycleModes, washingMachines[i].LastModified);
+        WashingMachineResponse washer = new WashingMachineResponse(washingMachines[i].Id, washingMachines[i].Cost, washingMachines[i].Model, washingMachines[i].LoadAmount, washingMachines[i].Year, washingMachines[i].RunTime, washingMachines[i].DeviceType, washingMachines[i].InUse, washingMachines[i].ReservedByUser, washingMachines[i].Temperatures, washingMachines[i].CycleModes, washingMachines[i].LastModified);
         return Ok(washer);
       }
     }
@@ -46,12 +46,12 @@ public class WashingMachineController : ControllerBase
   [HttpGet("")]
   public IActionResult GetWashingMachines()
   {
-    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines();
+    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines().Result;
 
     List<WashingMachineResponse> list = new List<WashingMachineResponse>();
     foreach (WashingMachine washer in washingMachines)
     {
-      list.Add(new WashingMachineResponse(washer.Id, washer.Cost, washer.Model, washer.LoadAmount, washer.Year, washer.RunTime, washer.DeviceType, washer.Temperatures, washer.CycleModes, washer.LastModified));
+      list.Add(new WashingMachineResponse(washer.Id, washer.Cost, washer.Model, washer.LoadAmount, washer.Year, washer.RunTime, washer.DeviceType, washer.InUse, washer.ReservedByUser, washer.Temperatures, washer.CycleModes, washer.LastModified));
     }
     Console.WriteLine("Listed all washers");
     return Ok(list);
@@ -64,7 +64,9 @@ public class WashingMachineController : ControllerBase
 
     lastModified.Add(DateTime.Now.ToString());
 
-    WashingMachine washingMachine = new WashingMachine(washingMachineData.Id, washingMachineData.Cost, washingMachineData.Model, washingMachineData.LoadAmount, washingMachineData.Year, washingMachineData.RunTime, washingMachineData.DeviceType, washingMachineData.Temperatures, washingMachineData.CycleModes, lastModified, new List<string>());
+    UserReservation userReservation = new UserReservation("", "", "");
+
+    WashingMachine washingMachine = new WashingMachine(washingMachineData.Id, washingMachineData.Cost, washingMachineData.Model, washingMachineData.LoadAmount, washingMachineData.Year, washingMachineData.RunTime, washingMachineData.DeviceType, false, userReservation, washingMachineData.Temperatures, washingMachineData.CycleModes, lastModified, new List<string>());
 
     WashingMachine.storeWashingMachineData(washingMachine);
 
@@ -75,7 +77,7 @@ public class WashingMachineController : ControllerBase
   public IActionResult UpdateWashingMachine(string id, UpdateWashingMachine washingMachineData)
   {
 
-    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines();
+    List<WashingMachine> washingMachines = WashingMachine.getWashingMachines().Result;
 
     if (washingMachines == null || washingMachines.Count == 0)
     {
@@ -103,7 +105,7 @@ public class WashingMachineController : ControllerBase
   public IActionResult DeleteWashingMachine(string id)
   {
 
-    bool result = WashingMachine.deleteWashingMachineData(id);
+    bool result = WashingMachine.deleteWashingMachineData(id).Result;
 
     if (result)
     {

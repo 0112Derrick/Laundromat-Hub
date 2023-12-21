@@ -7,6 +7,12 @@
     "Year": 2021,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -20,6 +26,12 @@
     "Year": 2022,
     "RunTime": 45,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -33,6 +45,12 @@
     "Year": 2020,
     "RunTime": 35,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -46,6 +64,12 @@
     "Year": 2023,
     "RunTime": 25,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -59,6 +83,12 @@
     "Year": 2022,
     "RunTime": 50,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -72,6 +102,12 @@
     "Year": 2021,
     "RunTime": 40,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -85,6 +121,12 @@
     "Year": 2019,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -98,6 +140,12 @@
     "Year": 2023,
     "RunTime": 45,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -111,6 +159,12 @@
     "Year": 2020,
     "RunTime": 25,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -124,6 +178,12 @@
     "Year": 2022,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": [""],
@@ -137,6 +197,12 @@
     "Year": 2023,
     "RunTime": 30,
     "DeviceType": "Washer",
+    "InUse": false,
+    "ReservedByUser": {
+      "UserName": "",
+      "UserID": "",
+      "Date": ""
+    },
     "Temperatures": ["warm", "cold", "hot"],
     "CycleModes": ["delicate", "normal", "quick", "sanitary"],
     "LastModified": ["12/03/2023 12:01:32"],
