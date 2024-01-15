@@ -28,7 +28,8 @@ public class Program
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();
-                webBuilder.UseUrls("http://192.168.0.229:5035");
+                //webBuilder.UseUrls("http://192.168.0.229:5035");
+                webBuilder.UseUrls("http://192.168.1.195:5035");
             });
 }
 

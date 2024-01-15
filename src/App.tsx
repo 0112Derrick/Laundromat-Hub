@@ -47,7 +47,7 @@ interface IndividualWashingMachineProps {
 const fetchWasher = async (id) => {
   const port = 5035;
   const localhost = "http://localhost:";
-  const serverIP = "http://192.168.0.229:";
+  const serverIP = "http://192.168.1.195:";
   const route = "/washingmachine/";
   //const request = new Request(`http://localhost:${port}/washingmachine/${id}`
   const request = new Request(`${serverIP + port + route + id}`, {
@@ -114,7 +114,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const localhost = "http://localhost:";
-      const serverIP = "http://192.168.0.229:";
+      const serverIP = "http://192.168.1.195:";
       const route = "/washingmachine/";
       //const request = new Request(`http://localhost:${port}/washingmachine/`
       const request = new Request(`${serverIP + port + route}`, {

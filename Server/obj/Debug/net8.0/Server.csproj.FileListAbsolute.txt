@@ -62,3 +62,4 @@
 /Users/derrickwilliams/Documents/laundromat-app/Laundromat-Hub/Server/obj/Debug/net8.0/Server.pdb
 /Users/derrickwilliams/Documents/laundromat-app/Laundromat-Hub/Server/obj/Debug/net8.0/Server.genruntimeconfig.cache
 /Users/derrickwilliams/Documents/laundromat-app/Laundromat-Hub/Server/obj/Debug/net8.0/ref/Server.dll
+/Users/derrickwilliams/Documents/laundromat-app/Laundromat-Hub/Server/obj/Debug/net8.0/Server.sourcelink.json

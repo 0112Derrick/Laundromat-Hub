@@ -4,7 +4,8 @@ import Button from "react-bootstrap/Button";
 import { DryerMachineI, WashingMachineI } from "./App";
 import { temps, CycleMode, PaymentTracker } from "./WashingMachine";
 const localhost = "http://localhost:";
-const serverIP = "http://192.168.0.229:";
+const serverIP = "http://192.168.1.195:";
+const port = 3000;
 const route = "/washingmachine/";
 
 type PaymentInfo = {
@@ -208,6 +209,7 @@ export function ProcessPaymentForm({
   const cardNumberMaxLen = 16;
   const cvcNumberMaxLen = 3;
   const port = 5035;
+  const websitePort = 3000;
 
   const [revealCardNumber, setRevealCardNumber] = useState(true);
   const [revealCVC, setRevealCVC] = useState(true);
@@ -381,7 +383,9 @@ export function ProcessPaymentForm({
 
         setTimeout(() => {
           clearInterval(countdownIntervalId);
-          window.location.href = `${serverIP + route}${settings.machineID}`;
+          window.location.href = `${serverIP + websitePort + route}${
+            settings.machineID
+          }`;
         }, count * 1000 + 100);
       })
 
